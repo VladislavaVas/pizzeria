@@ -15,7 +15,7 @@ export const PRODUCTS = [
     country: 'Италия',
     year: 2024,
     model: 'Классическая',
-    inStock: true,
+    stock: 10,
     addedAt: '2024-11-15',
   },
   {
@@ -27,7 +27,7 @@ export const PRODUCTS = [
     country: 'Италия',
     year: 2023,
     model: 'Классическая',
-    inStock: true,
+    stock: 8,
     addedAt: '2024-10-20',
   },
   {
@@ -39,7 +39,7 @@ export const PRODUCTS = [
     country: 'Италия',
     year: 2022,
     model: 'Сырная',
-    inStock: true,
+    stock: 5,
     addedAt: '2024-09-01',
   },
   {
@@ -51,7 +51,7 @@ export const PRODUCTS = [
     country: 'США',
     year: 2024,
     model: '0.5 л',
-    inStock: true,
+    stock: 20,
     addedAt: '2024-11-01',
   },
   {
@@ -63,7 +63,7 @@ export const PRODUCTS = [
     country: 'Италия',
     year: 2024,
     model: 'Классический',
-    inStock: true,
+    stock: 7,
     addedAt: '2024-11-10',
   },
   {
@@ -75,7 +75,7 @@ export const PRODUCTS = [
     country: 'Россия',
     year: 2021,
     model: 'Спорная',
-    inStock: false, 
+    stock: 0, 
     addedAt: '2024-08-01',
   },
 ];
