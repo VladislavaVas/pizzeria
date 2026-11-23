@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { useCart } from '../context/CartContext';
+import { isAdmin } from '../utils/storage';
 
 function Header() {
   const { count } = useCart();
@@ -21,6 +22,9 @@ function Header() {
             <Nav.Link as={Link} to="/contacts">Контакты</Nav.Link>
             <Nav.Link as={Link} to="/cart">Корзина ({count})</Nav.Link>
             <Nav.Link as={Link} to="/profile">Личный кабинет</Nav.Link>
+            {isAdmin() && (
+              <Nav.Link as={Link} to="/admin">Админка</Nav.Link>
+            )}
           </Nav>
 
           <div className="d-flex gap-2">

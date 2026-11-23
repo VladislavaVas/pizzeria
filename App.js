@@ -9,7 +9,8 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Product from './pages/Product';
 import Cart from './pages/Cart'; 
-import Profile from './pages/Profile';          
+import Profile from './pages/Profile';  
+import Admin from './pages/Admin';        
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/product/:id" element={<Product />} />
             <Route path="/cart" element={<Cart />} /> 
             <Route path="/profile" element={<Profile />} />  
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </Container>
       </BrowserRouter>

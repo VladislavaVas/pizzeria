@@ -69,7 +69,15 @@ function Profile() {
                       {new Date(order.date).toLocaleString('ru-RU')}
                     </h5>
                     <div>
-                      <Badge bg={isNew ? 'warning' : 'secondary'}>
+                      <Badge
+                        bg={
+                          order.status === 'новый'
+                            ? 'warning'
+                            : order.status === 'подтверждён'
+                            ? 'success'
+                            : 'danger'
+                        }
+                      >
                         {order.status}
                       </Badge>
                       <span className="ms-2 text-muted">
@@ -98,6 +106,11 @@ function Profile() {
                     </li>
                   ))}
                 </ul>
+                {order.status === 'отменён' && order.cancelReason && (
+                  <Alert variant="danger" className="mt-3 mb-0">
+                    <strong>Причина отказа:</strong> {order.cancelReason}
+                  </Alert>
+                )}
               </Card.Body>
             </Card>
           );

@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Container, Row, Col, Button, Alert } from 'react-bootstrap';
-import { PRODUCTS } from '../data/products';
+import { getProducts } from '../utils/productsStorage';
+import { useCart } from '../context/CartContext';
 
 function Product() {
   const { id } = useParams();
-  const product = PRODUCTS.find((p) => String(p.id) === id);
+  const product = getProducts().find((p) => String(p.id) === id);
+  const { addToCart, items } = useCart();
   const [added, setAdded] = useState(false);
+  const [error, setError] = useState('');
 
   if (!product) {
     return (
@@ -17,7 +20,17 @@ function Product() {
     );
   }
 
+  const inCart = items.find((i) => i.id === product.id)?.quantity || 0;
+  const canAdd = product.stock > inCart;
+
   const handleAddToCart = () => {
+    setAdded(false);
+    setError('');
+    if (!canAdd) {
+      setError('Достигнут лимит наличия на складе');
+      return;
+    }
+    addToCart(product, 1);
     setAdded(true);
   };
 
@@ -52,24 +65,36 @@ function Product() {
             <li>
               <strong>Модель:</strong> {product.model}
             </li>
+            <li>
+              <strong>В наличии:</strong> {product.stock} шт.
+            </li>
           </ul>
 
-          {!product.inStock && (
+          {product.stock === 0 && (
             <Alert variant="warning">Нет в наличии</Alert>
           )}
 
           <Button
             variant="warning"
             size="lg"
-            disabled={!product.inStock}
+            disabled={product.stock === 0}
             onClick={handleAddToCart}
           >
             В корзину
           </Button>
 
+          {inCart > 0 && (
+            <p className="mt-2 text-muted">В корзине: {inCart} шт.</p>
+          )}
+
           {added && (
             <Alert variant="success" className="mt-3">
               Товар добавлен в корзину!
+            </Alert>
+          )}
+          {error && (
+            <Alert variant="danger" className="mt-3">
+              {error}
             </Alert>
           )}
         </Col>

@@ -1,14 +1,17 @@
 import { useState, useMemo } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { PRODUCTS, CATEGORIES } from '../data/products';
+import { getProducts, getCategories } from '../utils/productsStorage';
 
 function Catalog() {
   const [sortBy, setSortBy] = useState('new');
   const [category, setCategory] = useState('all');
 
+  const products = getProducts();      
+  const categories = getCategories(); 
+
   const visibleProducts = useMemo(() => {
-    let list = PRODUCTS.filter((p) => p.inStock);
+    let list = products.filter((p) => p.stock > 0);
 
     if (category !== 'all') {
       list = list.filter((p) => p.category === category);
@@ -52,7 +55,7 @@ function Catalog() {
 
         <div>
           <strong className="me-2">Категория:</strong>
-          {CATEGORIES.map((cat) => (
+          {categories.map((cat) => (
             <Button
               key={cat.id}
               size="sm"
