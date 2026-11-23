@@ -8,7 +8,8 @@ import Contacts from './pages/Contacts';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Product from './pages/Product';
-import Cart from './pages/Cart';          
+import Cart from './pages/Cart'; 
+import Profile from './pages/Profile';          
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/product/:id" element={<Product />} />
-            <Route path="/cart" element={<Cart />} />   
+            <Route path="/cart" element={<Cart />} /> 
+            <Route path="/profile" element={<Profile />} />  
           </Routes>
         </Container>
       </BrowserRouter>

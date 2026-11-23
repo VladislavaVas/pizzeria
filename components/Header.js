@@ -20,6 +20,7 @@ function Header() {
             <Nav.Link as={Link} to="/catalog">Каталог</Nav.Link>
             <Nav.Link as={Link} to="/contacts">Контакты</Nav.Link>
             <Nav.Link as={Link} to="/cart">Корзина ({count})</Nav.Link>
+            <Nav.Link as={Link} to="/profile">Личный кабинет</Nav.Link>
           </Nav>
 
           <div className="d-flex gap-2">
